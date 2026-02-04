@@ -910,3 +910,267 @@ footer {
 .service-card:hover::after {
     width: 100%;
 }
+
+/* --- RESPONSIVE MASTER STARTS HERE --- */
+
+/* 1. Large Tablets (1024px and below) */
+@media (max-width:724px) {
+    .left-box h3 { font-size: 3.5rem; }
+    .fit-box { min-width: 90%; padding: 30px; }
+    .service-grid, .cert-gallery, .testimonial-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+/* 2. Mobile Screens (768px and below) */
+@media (max-width: 568px) {
+    
+    /* Header Fix: Hide Nav and show Icon Space */
+    header {
+        height: 70px;
+        padding: 0 20px;
+    }
+
+    header .home {
+        position: fixed;
+        top: 70px;
+        right: -100%; /* Hide Sidebar */
+        width: 80%;
+        height: 100vh;
+        background: rgba(15, 23, 42, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 50px;
+        gap: 30px;
+        transition: 0.4s ease-in-out;
+        z-index: 999;
+        border-left: 2px solid var(--primary);
+    }
+
+    /* Jab JS se 'active' class add hogi */
+    header .home.active {
+        right: 0;
+    }
+
+    /* Hero Section - Text Scaling */
+    .box { padding: 100px 15px 40px; }
+    .left-box h3 { font-size: 2.5rem; line-height: 1.2; }
+    .left-box h2 { font-size: 1.4rem; }
+    .left-box h1 { font-size: 1.2rem; letter-spacing: 3px; }
+
+    /* Buttons & Stats */
+    .ww { flex-direction: column; width: 100%; align-items: center; }
+    .bbb, .baba { width: 80%; }
+
+    .stats-container { gap: 15px; padding: 30px 10px; }
+    .stat-item { min-width: 100%; padding: 20px; }
+    .stat-item h1 { font-size: 2.5rem; }
+
+    /* Services & Certificates - 1 Column */
+    .service-grid, .testimonial-grid, .cert-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .fit-box {
+        min-width: 100%;
+        padding: 25px;
+        margin: 10px;
+    }
+    
+    .fit-box h1 { font-size: 1.8rem; }
+    .fit-box p { font-size: 1rem; text-align: left; }
+
+    /* Coding Card Fix */
+    .card {
+        flex-direction: column;
+        padding: 30px 15px;
+    }
+
+    .code-box {
+        font-size: 0.8rem;
+        overflow-x: auto;
+        width: 100%;
+    }
+
+    /* Contact Form */
+    form { padding: 25px 15px; }
+
+    /* Float Button Size Fix */
+    .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* 3. Small Mobile Screens (480px and below) */
+@media (max-width: 480px) {
+    .left-box h3 { font-size: 2rem; }
+    .services h1, .testimonials h2, .cert-header h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Touch Optimization */
+@media (hover: none) {
+    .stat-item:hover, .service-card:hover {
+        transform: none; /* Mobile par hover effects aksar glitches karte hain */
+    }
+}
+
+/* Full Screen Loader Container */
+.loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #0f172a 0%, #020617 100%); /* Deep space gradient */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                visibility 0.8s, 
+                filter 0.8s ease;
+}
+
+/* The Glowing Core */
+.loader {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Outer Rotating Ring */
+.loader::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3px solid transparent;
+    border-top: 3px solid #38bdf8; /* Neon Cyan */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    filter: drop-shadow(0 0 10px #38bdf8);
+}
+
+/* Middle Pulsing Ring */
+.loader::after {
+    content: "";
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    border: 2px solid transparent;
+    border-bottom: 2px solid #818cf8; /* Soft Indigo */
+    border-radius: 50%;
+    animation: spin-reverse 1.5s linear infinite;
+    opacity: 0.7;
+}
+
+/* Center Scanning Pulse */
+.loader-inner {
+    width: 40%;
+    height: 40%;
+    background: rgba(56, 189, 248, 0.2);
+    border: 1px solid #38bdf8;
+    border-radius: 50%;
+    animation: pulse-core 2s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+}
+
+/* Futuristic Text with Letter Spacing */
+.loader-wrapper p {
+    margin-top: 40px;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background: linear-gradient(90deg, #38bdf8, #fff, #38bdf8);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: text-shine 3s linear infinite;
+}
+
+/* --- Animations --- */
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes spin-reverse {
+    to { transform: rotate(-360deg); }
+}
+
+@keyframes pulse-core {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.3); opacity: 1; }
+}
+
+@keyframes text-shine {
+    to { background-position: 200% center; }
+}
+
+/* Exit Animation Classes */
+.loader-hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    filter: blur(15px);
+    transform: scale(1.1);
+    pointer-events: none;
+}
+
+/* --- High-End Minimal Scrollbar --- */
+
+/* 1. Scrollbar Container (Width ko thora kam kiya for elegance) */
+::-webkit-scrollbar {
+    width: 6px; /* Patli scrollbar zyada premium lagti hai */
+    height: 6px; /* Horizontal scrollbar ke liye */
+}
+
+/* 2. Track (Isse transparent rakhein taake background clean lage) */
+::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+/* 3. The Thumb (Modern Neon Glass Look) */
+::-webkit-scrollbar-thumb {
+    background: rgba(56, 189, 248, 0.3); /* Shuru mein halki cyan transparency */
+    border-radius: 100px;
+    transition: all 0.4s ease;
+    /* Glassmorphism effect */
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(56, 189, 248, 0.1);
+}
+
+/* 4. Hover State (Jab user cursor pass laye toh glow kare) */
+::-webkit-scrollbar-thumb:hover {
+    background: #38bdf8; /* Sharp neon cyan */
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.8), 
+                0 0 30px rgba(56, 189, 248, 0.4);
+}
+
+/* 5. Active/Grab State (Jab scroll pakar ke khaincha jaye) */
+::-webkit-scrollbar-thumb:active {
+    background: #ffffff; /* Bilkul white glow taake user ko feedback mile */
+    box-shadow: 0 0 20px #ffffff;
+}
+
+/* --- Smooth Scrolling Fix for entire site --- */
+html {
+    scroll-behavior: smooth;
+    /* Firefox Support */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(56, 189, 248, 0.5) transparent;
+}

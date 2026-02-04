@@ -15,6 +15,7 @@
 </head>
 
 <body>
+    
     <div class="container">
         <header>
             <a href="#" class="logo">
@@ -35,6 +36,12 @@
     <main>
         
         <section class="box">
+   <div class="loader-wrapper">
+    <div class="loader">
+        <div class="loader-inner"></div>
+    </div>
+    <p>AHMED KHAN</p>
+</div>
                     <div class="status-bar">
     <span class="pulse-dot"></span>
     <p>Available for New Projects - <span>3 Slots Left This Month</span></p>
@@ -228,7 +235,7 @@
         <p>© 2026 Ahmed Khan | All Rights Reserved.</p>
     </footer>
 
-    <script  type="application/ld+json" src="index.js">
+    <script src="index.js">
 
         // Smooth scroll for all internal links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -257,17 +264,25 @@ faqs.forEach(faq => {
     });
 });
         
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Ahmed Khan",
-  "jobTitle": "Web Developer",
-  "url": "https://yourwebsite.com",
-  "sameAs": [
-    "https://github.com/yourprofile",
-    "https://linkedin.com/in/yourprofile"
-  ]
-}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const loader = document.querySelector(".loader-wrapper");
+
+    if (loader) {
+        // Poore 2 second baad class add hogi
+        setTimeout(() => {
+            loader.classList.add("loader-hidden");
+            console.log("Loader hidden class added!"); // Check in Console
+
+            // 0.8s ke baad screen se bilkul khatam (Performance ke liye)
+            setTimeout(() => {
+                loader.style.display = "none";
+            }, 800);
+        }, 2000); 
+    } else {
+        console.error("Loader wrapper not found in HTML!");
+    }
+});
 
     </script>
 </body>

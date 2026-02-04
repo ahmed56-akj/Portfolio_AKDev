@@ -103,3 +103,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const loader = document.querySelector(".loader-wrapper");
+
+    if (loader) {
+        // Poore 2 second baad class add hogi
+        setTimeout(() => {
+            loader.classList.add("loader-hidden");
+            console.log("Loader hidden class added!"); // Check in Console
+
+            // 0.8s ke baad screen se bilkul khatam (Performance ke liye)
+            setTimeout(() => {
+                loader.style.display = "none";
+            }, 800);
+        }, 1000); 
+    } else {
+        console.error("Loader wrapper not found in HTML!");
+    }
+});
