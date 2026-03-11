@@ -6,16 +6,16 @@ require("dotenv").config();
 const app = express();
 const PORT = 5000;
 
-// ✅ Middleware
+// Middleware
 app.use(cors()); // Allows all origins (Frontend) to connect
 app.use(express.json()); 
 
-// ✅ Test route (Open http://localhost:5000 in browser to check if this works)
+//  Test route (Open http://localhost:5000 in browser to check if this works)
 app.get("/", (req, res) => {
     res.send("Portfolio Backend is LIVE and Running!");
 });
 
-// ✅ Contact form route
+//  Contact form route
 app.post("/contact", async (req, res) => {
     console.log("Data Received:", req.body); 
 
@@ -62,7 +62,13 @@ app.post("/contact", async (req, res) => {
     }
 });
 
-// ✅ Start server
+//  Start server
 app.listen(PORT, () => {
     console.log(`🚀 Server active at http://localhost:${PORT}`);
 });
+
+
+
+
+
+
