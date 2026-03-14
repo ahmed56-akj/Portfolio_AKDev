@@ -63,9 +63,13 @@ app.post("/contact", async (req, res) => {
 });
 
 //  Start server
-app.listen(PORT, () => {
-    console.log(`🚀 Server active at http://localhost:${PORT}`);
-});
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`🚀 Server active at http://localhost:${PORT}`);
+    });
+}
+
+module.exports = app;
 
 
 
