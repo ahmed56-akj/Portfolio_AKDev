@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // ==== Smooth Scroll ====
+    
+    // 1. ==== Smooth Scroll ====
     const scrollLinks = [
         { id: "homeLink", target: "fit-box" },
         { id: "contactLink", target: "contact" },
@@ -17,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // ==== Mobile Menu Toggle ====
+    // 2. ==== Mobile Menu Toggle ====
     const menuButton = document.querySelector(".fab.fa-menu");
     const navMenu = document.querySelector(".home");
 
@@ -28,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ==== Button Hover Animation ====
+    // 3. ==== Button Hover Animation ====
     document.querySelectorAll("button").forEach(btn => {
         btn.addEventListener("mouseover", () => {
             btn.style.transform = "scale(1.1)";
@@ -39,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // ==== Card Scroll Animation ====
+    // 4. ==== Card Scroll Animation ====
     const cards = document.querySelectorAll('.card, .fff, .fff1, .fff2');
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -48,9 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { threshold: 0.3 });
     cards.forEach(card => observer.observe(card));
 
-    // ==== Contact Form Submission ====
+    // 5. ==== Contact Form Submission ====
     const contactForm = document.getElementById("contactForm") || document.querySelector(".five form");
-    
+
     if (contactForm) {
         contactForm.addEventListener("submit", async function (e) {
             e.preventDefault();
@@ -58,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const submitBtn = this.querySelector("button");
             const originalBtnText = submitBtn.textContent;
 
-            // UI Feedback
             submitBtn.disabled = true;
             submitBtn.textContent = "Sending...";
 
@@ -66,7 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const phone = this.querySelector("#phone")?.value.trim();
             const project = this.querySelector("#project")?.value.trim();
 
-            // Validation check
             if (!email || !phone || !project) {
                 alert("Please fill all fields");
                 submitBtn.disabled = false;
@@ -75,8 +74,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             try {
-                // Backend URL
-                const response = await fetch("http://localhost:5000/contact", {
+                // LIVE RAILWAY URL
+                const response = await fetch("https://portfoilobackend-production.up.railway.app/contact", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email, phone, project })
@@ -86,39 +85,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (response.ok) {
                     alert(data.message || "Success! Message sent.");
-                    this.reset(); // Form clear kar dega
+                    this.reset();
                 } else {
-                    // Server ne error bheja (e.g. 400 or 500)
                     throw new Error(data.message || "Server error");
                 }
 
             } catch (err) {
                 console.error("Submission Error:", err);
-                // Agar server start nahi hai toh ye alert chalega
-                alert("Connection Error: Backend server (port 5000) is not responding.");
+                alert("Connection Error: Backend server is not responding. Check if Railway is active.");
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = originalBtnText;
             }
         });
     }
-});
 
-document.addEventListener("DOMContentLoaded", () => {
+    // 6. ==== Loader Logic ====
     const loader = document.querySelector(".loader-wrapper");
-
     if (loader) {
-        // Poore 2 second baad class add hogi
         setTimeout(() => {
             loader.classList.add("loader-hidden");
-            console.log("Loader hidden class added!"); // Check in Console
-
-            // 0.8s ke baad screen se bilkul khatam (Performance ke liye)
             setTimeout(() => {
                 loader.style.display = "none";
             }, 800);
         }, 1000); 
-    } else {
-        console.error("Loader wrapper not found in HTML!");
     }
-});
+
+}); // Yahan main DOMContentLoaded khatam ho raha hai
