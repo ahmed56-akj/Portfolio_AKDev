@@ -83,7 +83,7 @@
   // ---- contact form (connects to backend) ----
   //const API_BASE = 'http://localhost:5000'; // change this to your deployed Vercel URL when live
 
- const API_BASE = 'portfolio-ak-devbackend.vercel.app';
+ const API_BASE = 'https://portfolio-ak-devbackend.vercel.app/';
 
   async function handleSubmit(e){
     e.preventDefault();
